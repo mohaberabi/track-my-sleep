@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+        <variable
+            name="dayNight"
+            type="com.example.trackmysleep.database.SleepNight" />
+
+
+        <variable
+            name="clickListener"
+            type="com.example.trackmysleep.sleeptracker.SleepNightListener" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:onClick="@{()->clickListener.onClick(dayNight)}"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/qualityImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:sleepImage="@{dayNight}"
+            app:srcCompat="@drawable/ic_sleep_5" />
+
+        <TextView
+            android:id="@+id/dayName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Wedensday"
+            app:sleepDurationFormatted="@{dayNight}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/qualityImage"
+            app:layout_constraintTop_toTopOf="@+id/qualityImage" />
+
+        <TextView
+            android:id="@+id/qualityName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:sleepQualityString="@{dayNight}"
+            android:text="Happy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/qualityImage"
+            app:layout_constraintTop_toBottomOf="@+id/dayName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -20,8 +20,6 @@ class SleepQualityFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         val binding: FragmentSleepQualityBinding =
             DataBindingUtil.inflate(
                 inflater,

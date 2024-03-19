@@ -31,7 +31,7 @@ class SleepTrackerViewModel(
     val tonight: LiveData<SleepNight?>
         get() = _tonight
 
-    private val nights: LiveData<List<SleepNight>> = dataBaseDao.getAllNights()
+    val nights: LiveData<List<SleepNight>> = dataBaseDao.getAllNights()
 
     val nightsString = nights.map {
         formatNights(it, app.resources)
@@ -84,6 +84,19 @@ class SleepTrackerViewModel(
         withContext(Dispatchers.IO) {
             dataBaseDao.update(night)
         }
+    }
+
+
+    private val _navigateToSleepQualityWithId = MutableLiveData<Long?>()
+    val navigateToSleepQualityWithId: LiveData<Long?>
+        get() = _navigateToSleepQualityWithId
+
+    fun onSleepNightClick(id: Long) {
+        _navigateToSleepQualityWithId.value = id
+    }
+
+    fun onDoneGettingIdWithNavigation() {
+        _navigateToSleepQualityWithId.value = null
     }
 
     fun onClear() {
